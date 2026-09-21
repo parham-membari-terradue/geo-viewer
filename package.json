@@ -1,0 +1,99 @@
+{
+	"name": "geotiff-viewer",
+	"displayName": "GeoTIFF Viewer (Community)",
+	"description": "View GeoTIFF raster files with support for LZW, DEFLATE, and other compressions",
+	"version": "0.2.0",
+	"publisher": "pmembari",
+	"icon": "assets/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/adh1b/geotiff-viewer"
+	},
+	"engines": {
+		"vscode": "^1.80.0"
+	},
+	"categories": [
+		"Visualization",
+		"Other"
+	],
+	"keywords": [
+		"geotiff",
+		"tiff",
+		"raster",
+		"remote sensing",
+		"satellite",
+		"ECOSTRESS",
+		"COG"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "geotiffViewer.raster",
+				"displayName": "GeoTIFF Viewer (Community)",
+				"selector": [
+					{
+						"filenamePattern": "*.tif"
+					},
+					{
+						"filenamePattern": "*.tiff"
+					},
+					{
+						"filenamePattern": "*.geotiff"
+					}
+				],
+				"priority": "default"
+			}
+		],
+		"configuration": {
+			"title": "GeoTIFF Viewer (Community)",
+			"properties": {
+				"geotiffViewer.defaultColormap": {
+					"type": "string",
+					"default": "viridis",
+					"enum": [
+						"viridis",
+						"plasma",
+						"inferno",
+						"magma",
+						"grayscale",
+						"jet",
+						"terrain",
+						"coolwarm"
+					],
+					"description": "Default colormap for displaying raster data"
+				},
+				"geotiffViewer.stretchPercent": {
+					"type": "number",
+					"default": 2,
+					"minimum": 0,
+					"maximum": 10,
+					"description": "Percent clip for histogram stretch (applied to both ends)"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run bundle",
+		"compile": "tsc --noEmit",
+		"bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
+		"watch": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch",
+		"package": "vsce package"
+	},
+	"dependencies": {
+		"geotiff": "^2.1.3"
+	},
+	"devDependencies": {
+		"@types/node": "^18.0.0",
+		"@types/vscode": "^1.80.0",
+		"@vscode/vsce": "^2.22.0",
+		"esbuild": "^0.27.3",
+		"typescript": "^5.3.0"
+	},
+	"__metadata": {
+		"installedTimestamp": 1789981407915,
+		"targetPlatform": "undefined",
+		"size": 229573
+	}
+}
