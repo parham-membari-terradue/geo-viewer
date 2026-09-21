@@ -75,12 +75,10 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run bundle",
-		"compile": "tsc --noEmit",
-		"bundle": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
-		"watch": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap --watch",
-		"package": "vsce package"
-	},
+  "vscode:prepublish": "node --check media/viewer.js",
+  "compile": "node --check media/viewer.js",
+  "package": "vsce package"
+		},
 	"dependencies": {
 		"geotiff": "^2.1.3"
 	},
